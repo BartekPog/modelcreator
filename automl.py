@@ -8,14 +8,21 @@ class Machine:
     # Machine for machine learning purposes
 
     def __init__(self, schema=None):
+        self.modelParams = None
+        self.modelName = "There is no model yet"
+        self.model = None
+        self.transformer = None
+        self.isClassifier = False
+        self.isTrained = False
         if isinstance(schema, str):
-            self = joblib.load(schema)
-        else:
-            self.modelParams = None
-            self.model = None
-            self.transformer = None
-            self.isClassifier = False
-            self.isTrained = False
+            with open(schema, 'rb') as file:
+                prev = joblib.load(file)
+                self.modelParams = prev.modelParams
+                self.modelName = prev.modelName
+                self.model = prev.model
+                self.transformer = prev.transformer
+                self.isClassifier = prev.isClassifier
+                self.isTrained = prev.isTrained
 
     def learn(self, dataset_file, header_in_csv=False, verbose=True):
         dataset = pd.read_csv(dataset_file, header=(
@@ -62,8 +69,9 @@ class Machine:
     # def predictOne(self):
     #     pass
 
-    def saveMachine(self, outputPath="machine.pkl"):
-        joblib.dump(self, outputPath)
+    def saveMachine(self, output_file_name="machine.pkl"):
+        with open(output_file_name, 'wb') as file:
+            joblib.dump(self, file)
 
     def showParams(self):
         print(self.modelName)

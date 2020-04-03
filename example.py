@@ -12,12 +12,14 @@ machine = automl.Machine()
 
 machine.learnAndPredict("data/iris.csv", "data/iris-only-x.csv")
 
-# machine.predict("data/iris-only-x.csv")
+machine.predict("data/iris-only-x.csv")
 
-# machine.saveMachine()
+machine.saveMachine()
 
 machine.showParams()
 
-# machine2 = automl.Machine("machine.pkl")
+machine2 = automl.Machine("machine.pkl")
 
-# machine2.showParams()
+machine2.showParams()
+
+machine2.showParams()

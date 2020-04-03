@@ -21,14 +21,14 @@ def generateModel(X, y, isClassification, verbose=True):
         model['grid_search_result'].fit(X, y)
 
         if verbose:
-            print(" ", model['grid_search_result'].best_score_)
+            print(" {0:.4f}".format(model['grid_search_result'].best_score_))
 
         if model['grid_search_result'].best_score_ > finalModel['grid_search_result'].best_score_:
             finalModel = model
 
     if verbose:
         print("Chosen model: ", finalModel['name'],
-              finalModel['grid_search_result'].best_score_)
+              "{0:.4f}".format(finalModel['grid_search_result'].best_score_))
 
     return {
         'estimator': finalModel['grid_search_result'].best_estimator_,
