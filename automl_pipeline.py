@@ -31,8 +31,8 @@ class Transformer:
 
         self.pipeline = FeatureUnion(transformer_list=transformers)
 
-        self.pipeline.fit_transform(X)
         self.ready = True
+        return self.pipeline.fit_transform(X)
 
     def transform(self, X):
         if(not self.ready):

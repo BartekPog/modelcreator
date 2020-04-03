@@ -26,8 +26,12 @@ def generateModel(X, y, isClassification, verbose=True):
         if model['grid_search_result'].best_score_ > finalModel['grid_search_result'].best_score_:
             finalModel = model
 
+    if verbose:
+        print("Chosen model: ", finalModel['name'],
+              finalModel['grid_search_result'].best_score_)
+
     return {
         'estimator': finalModel['grid_search_result'].best_estimator_,
         'name': finalModel['name'],
-        'params': finalModel['grid_search_result'].best_params_
+        'params': finalModel['grid_search_result'].best_params_,
     }
