@@ -1,7 +1,8 @@
 .env/
 .ipynb_checkpoints/
 .vscode/
-__pycache__/
-machine.pkl
-output.csv
-automl.ipynb
+hidden/
+# __pycache__/
+# machine.pkl
+# output.csv
+# automl.ipynb

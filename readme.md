@@ -2,23 +2,52 @@
 
 This library contains class **Machine** which is meant to do the **learning** for you.
 
-## Usage
+### Instalation
 
-The file `example.py` shows the main features of the library. Consider taking a look over there.
+To use the library you have to clone this repositorium and run:
 
-<!-- ### Instalation -->
+```bash
+pip install sklearn pandas joblib
+```
 
-<!-- ### Interface -->
+### Usage
 
-### To do list
+The library assumes that the last column of the training dataset contains the expected results. The dataset (both training and predictive) must be provided as a csv file. If the file contains headers you shall add `header_in_csv=True` parameter to the method. If you want the learning or predicting to be silent add `verbose=False`.
+
+###### Example
+
+```python
+import automl
+
+# Create automl machine instance
+machine = automl.Machine()
+
+# Train machine learning model
+machine.learn('example-data/iris.csv')
+
+# Predict the outcomes
+machine.predict('example-data/iris-pred.csv', 'output.csv')
+
+# Show parameters of the model
+machine.showParams()
+
+# Save Machine with trained model to "machine.pkl"
+machine.saveMachine('machine.pkl')
+
+# Create new machine based on the schema
+machine2 = automl.Machine('machine.pkl')
+```
+
+This example is also available in the `example.py` file. Consider trying it on your own.
+
+### TODO
 
 - [x] Create main files structure and test script on Iris dataset,
-- [ ] Describe downloading script and usage in readme,
 - [ ] Add class methods with input as pandas dataset instead of csv,
 - [ ] Test on other easy datasets,
 - [ ] Test on harder datasets,
+- [ ] Add unit tests
 - [ ] Add more models and parameters to the grid,
 - [ ] Add gif to readme,
 - [ ] Handle unimportand columns of text values (eg. first and last names),
 - [ ] Add extra feature extractors to text columns.
-- [ ] Add unit tests
