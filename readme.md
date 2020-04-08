@@ -43,11 +43,12 @@ This example is also available in the `example.py` file. Consider trying it on y
 ### TODO
 
 - [x] Create main files structure and test script on Iris dataset,
-- [ ] Add class methods with input as pandas dataset instead of csv,
+- [ ] Handle unimportant columns of text values (eg. first and last names),
+- [ ] Handle sparse data (eg. less than 60% shall be dropped),
 - [ ] Test on other easy datasets,
 - [ ] Test on harder datasets,
-- [ ] Add unit tests
+- [ ] Add unit tests,
 - [ ] Add more models and parameters to the grid,
+- [ ] Add class methods with input as pandas dataset instead of csv,
 - [ ] Add gif to readme,
-- [ ] Handle unimportand columns of text values (eg. first and last names),
 - [ ] Add extra feature extractors to text columns.
