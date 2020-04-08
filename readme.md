@@ -43,8 +43,8 @@ This example is also available in the `example.py` file. Consider trying it on y
 ### TODO
 
 - [x] Create main files structure and test script on Iris dataset,
-- [ ] Handle unimportant columns of text values (eg. first and last names),
-- [ ] Handle sparse data (eg. less than 60% shall be dropped),
+- [x] Handle sparse data (eg. less than 60% shall be dropped),
+- [ ] Handle too many class variables,
 - [ ] Test on other easy datasets,
 - [ ] Test on harder datasets,
 - [ ] Add unit tests,

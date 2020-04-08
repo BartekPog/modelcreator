@@ -5,10 +5,17 @@ from sklearn.base import BaseEstimator, TransformerMixin
 
 
 class __DataFrameSelectorByIdx(BaseEstimator, TransformerMixin):
-    def __init__(self, attribute_ids):
+    def __init__(self, attribute_ids, acceptable_missing_threshold=0.35):
         self.attribute_ids = attribute_ids
+        self.acceptable_missing_threshold = acceptable_missing_threshold
 
     def fit(self, X, y=None):
+        # Exclude columns with number of missing values exceeding threshold
+        allRows = len(X)
+        missing = list(X.isna().sum())
+        self.attribute_ids = list(filter(
+            lambda idx: missing[idx]/allRows <= self.acceptable_missing_threshold, self.attribute_ids))
+
         return self
 
     def transform(self, X):
