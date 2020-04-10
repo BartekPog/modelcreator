@@ -54,21 +54,6 @@ class Machine:
 
         predictions.to_csv(output_file)
         print("Results saved to ", output_file)
-        # if not self.isTrained:
-        #     print("Run learn function first")
-        #     return
-
-        # X_pred = pd.read_csv(features_file, header=(
-        #     0 if header_in_csv else None))
-
-        # X_pred_prepared = self.transformer.transform(X_pred)
-
-        # y_pred = self.model.predict(X_pred_prepared)
-
-        # y_pred_dataframe = pd.DataFrame(data=y_pred, columns=["results"])
-
-        # y_pred_dataframe.to_csv(output_file)
-        # print("Results saved to ", output_file)
 
     def predictFromDf(self, X_predictions, output_file=None):
         if not self.isTrained:

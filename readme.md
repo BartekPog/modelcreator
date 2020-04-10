@@ -43,12 +43,13 @@ This example is also available in the `example.py` file. Consider trying it on y
 ### TODO
 
 - [x] Create main files structure and test script on Iris dataset,
-- [x] Handle sparse data (eg. less than 60% shall be dropped),
+- [x] Handle sparse data (eg. columns with less than 60% data shall be dropped),
+- [x] Test on other easy datasets,
 - [x] Add class methods with input as pandas dataset instead of csv,
-- [ ] Handle too many class variables,
-- [ ] Test on other easy datasets,
+- [ ] Handle too many class variables (by replacing uncommon as "rare"),
 - [ ] Test on harder datasets,
+- [ ] Expand Machine model report printing function,
+- [ ] Expand documentation,
 - [ ] Add unit tests,
 - [ ] Add more models and parameters to the grid,
 - [ ] Add gif to readme,
-- [ ] Add extra feature extractors to text columns.
