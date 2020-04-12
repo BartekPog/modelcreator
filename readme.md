@@ -46,8 +46,9 @@ This example is also available in the `example.py` file. Consider trying it on y
 - [x] Handle sparse data (eg. columns with less than 60% data shall be dropped),
 - [x] Test on other easy datasets,
 - [x] Add class methods with input as pandas dataset instead of csv,
-- [ ] Handle too many class variables (by replacing uncommon as "rare"),
+- [x] Handle too many class variables (by replacing uncommon as "rare"),
 - [ ] Test on harder datasets,
+- [ ] Add visualisation methods
 - [ ] Expand Machine model report printing function,
 - [ ] Expand documentation,
 - [ ] Add unit tests,

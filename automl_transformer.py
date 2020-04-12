@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.pipeline import Pipeline, FeatureUnion
-from automl_transformers import NumericalPipeline, CategoricalPipeline
+from automl_transformation_pipelines import NumericalPipeline, CategoricalPipeline
 
 
 class Transformer:

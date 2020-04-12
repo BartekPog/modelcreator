@@ -1,12 +1,10 @@
 import pandas as pd
 import joblib
 from automl_models_generation import generateModel
-from automl_pipeline import Transformer
+from automl_transformer import Transformer
 
 
 class Machine:
-    # Machine for machine learning purposes
-
     def __init__(self, schema=None):
         self.modelParams = None
         self.modelName = "There is no model yet"
@@ -78,12 +76,10 @@ class Machine:
         self.learn(train_set_file, headers_in_csvs, verbose)
         self.predict(prediction_features_file, output_file, headers_in_csvs)
 
-    # def predictOne(self):
-    #     pass
-
     def saveMachine(self, output_file_name="machine.pkl"):
         with open(output_file_name, 'wb') as file:
             joblib.dump(self, file)
+            print("done")
 
     def showParams(self):
         print(self.modelName)
