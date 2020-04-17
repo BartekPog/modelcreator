@@ -44,16 +44,17 @@ class Machine:
         self.modelParams = modelData['params']
         self.isTrained = True
 
-    def predict(self, features_file, output_file="output.csv", header_in_csv=False):
+    def predict(self, features_file, output_file="output.csv", header_in_csv=False, verbose=True):
         X_pred = pd.read_csv(features_file, header=(
             0 if header_in_csv else None))
 
         predictions = self.predictFromDf(X_pred)
 
         predictions.to_csv(output_file)
-        print("Results saved to ", output_file)
+        if(verbose):
+            print("Results saved to ", output_file)
 
-    def predictFromDf(self, X_predictions, output_file=None):
+    def predictFromDf(self, X_predictions, output_file=None, verbose=True):
         if not self.isTrained:
             print("Run learning function first")
             return pd.DataFrame({'err': True})
@@ -66,7 +67,8 @@ class Machine:
 
         if(isinstance(output_file, str)):
             y_pred_dataframe.to_csv(output_file)
-            print("Results saved to ", output_file)
+            if(verbose):
+                print("Results saved to ", output_file)
 
         return y_pred_dataframe
 
