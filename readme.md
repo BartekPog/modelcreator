@@ -1,6 +1,6 @@
 # Automated Machine Learning Library
 
-This library contains class **Machine** which is meant to do the **learning** for you.
+This library contains a **Machine** which is meant to do the **learning** for you.
 
 ## Instalation
 
@@ -37,7 +37,7 @@ This example is also available in the `example.py` file. Consider trying it on y
 
 #### DataFrame input
 
-But what to do if a result column is not the last in the given csv? It may be inconvenient to rewrite the whole csv just to swap the columns. Because of this problem Machine has `learnFromDf` and `predictFromDf` methods. The Df in method names stands for DataFrame from pandas module. This way you can handle reading the file by yourself.
+But what to do if a result column is not the last in the given csv? It may be inconvenient to rewrite the whole csv just to swap the columns. Because of this problem Machine has `learnFromDf` and `predictFromDf` methods. The _Df_ in method names stands for _DataFrame_ from pandas module. This way you can handle reading the file by yourself.
 
 ###### Example 2 _Titanic_
 

@@ -8,8 +8,8 @@ def NumericalPipeline(numeric_indexes):
     return Pipeline([
         ('selector', __DataFrameSelectorByIdx(numeric_indexes)),
         ('imputer', SimpleImputer(strategy="median")),
-        ('min_max_scaler', MinMaxScaler()),
-        #     ('std_scaler', StandardScaler())
+        # ('min_max_scaler', MinMaxScaler()),
+        ('std_scaler', StandardScaler())
     ])
 
 
