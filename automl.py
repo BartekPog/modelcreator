@@ -18,20 +18,21 @@ class Machine:
                 self.modelParams = prev.modelParams
                 self.modelName = prev.modelName
                 self.model = prev.model
+
                 self.transformer = prev.transformer
                 self.isClassifier = prev.isClassifier
                 self.isTrained = prev.isTrained
 
-    def learn(self, dataset_file, header_in_csv=False, verbose=True):
+    def learn(self, dataset_file, header_in_csv=False, metrics=None, verbose=True):
         dataset = pd.read_csv(dataset_file, header=(
             0 if header_in_csv else None))
 
         X = dataset.iloc[:, :-1]
         y = dataset.iloc[:, -1]
 
-        self.learnFromDf(X, y, verbose)
+        self.learnFromDf(X, y, metrics, verbose)
 
-    def learnFromDf(self, X, y, verbose=True):
+    def learnFromDf(self, X, y, metrics=None, verbose=True):
         self.isClassifier = isinstance(y[0], str)
 
         self.transformer = Transformer()
