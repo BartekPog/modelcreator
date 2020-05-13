@@ -2,6 +2,7 @@ import pandas as pd
 import joblib
 from automl_models_generation import generateModel
 from automl_transformer import Transformer
+from automl_metrics import isValidMetrics
 
 
 class Machine:
@@ -22,22 +23,27 @@ class Machine:
                 self.isClassifier = prev.isClassifier
                 self.isTrained = prev.isTrained
 
-    def learn(self, dataset_file, header_in_csv=False, verbose=True):
+    def learn(self, dataset_file, header_in_csv=False, metrics=None, verbose=True):
         dataset = pd.read_csv(dataset_file, header=(
             0 if header_in_csv else None))
 
         X = dataset.iloc[:, :-1]
         y = dataset.iloc[:, -1]
 
-        self.learnFromDf(X, y, verbose)
+        self.learnFromDf(X, y, metrics, verbose)
 
-    def learnFromDf(self, X, y, verbose=True):
+    def learnFromDf(self, X, y, metrics=None, verbose=True):
         self.isClassifier = isinstance(y[0], str)
+
+        if(not isValidMetrics(metrics, self.isClassifier)):
+            print("This metrics invalid")
+            return None
 
         self.transformer = Transformer()
         X_prep = self.transformer.fit_transform(X)
 
-        modelData = generateModel(X_prep, y, self.isClassifier, verbose)
+        modelData = generateModel(
+            X_prep, y, self.isClassifier, metrics, verbose)
 
         self.modelName = modelData['name']
         self.model = modelData['estimator']
@@ -73,9 +79,9 @@ class Machine:
         return y_pred_dataframe
 
     def learnAndPredict(self, train_set_file, prediction_features_file,
-                        output_file="output.csv", headers_in_csvs=False,
+                        output_file="output.csv", headers_in_csvs=False, metrics=None,
                         verbose=True):
-        self.learn(train_set_file, headers_in_csvs, verbose)
+        self.learn(train_set_file, headers_in_csvs, metrics, verbose)
         self.predict(prediction_features_file, output_file, headers_in_csvs)
 
     def saveMachine(self, output_file_name="machine.pkl"):
