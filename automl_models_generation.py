@@ -4,13 +4,12 @@ from automl_models import classificationModels, regressionModels
 
 
 def generateModel(X, y, isClassification, metrics, verbose=True):
-    models = classificationModels if isClassification else regressionModels
-
     if (metrics == None):
         scoring = 'accuracy' if isClassification else 'neg_root_mean_squared_error'
     else:
         scoring = metrics if isinstance(metrics, str) else make_scorer(metrics)
 
+    models = classificationModels if isClassification else regressionModels
     finalModel = models[0]
 
     for model in models:
