@@ -2,6 +2,7 @@ import pandas as pd
 import joblib
 from automl_models_generation import generateModel
 from automl_transformer import Transformer
+from automl_metrics import isValidMetrics
 
 
 class Machine:
@@ -18,7 +19,6 @@ class Machine:
                 self.modelParams = prev.modelParams
                 self.modelName = prev.modelName
                 self.model = prev.model
-
                 self.transformer = prev.transformer
                 self.isClassifier = prev.isClassifier
                 self.isTrained = prev.isTrained
@@ -35,10 +35,15 @@ class Machine:
     def learnFromDf(self, X, y, metrics=None, verbose=True):
         self.isClassifier = isinstance(y[0], str)
 
+        if(not isValidMetrics(metrics, self.isClassifier)):
+            print("This metrics invalid")
+            return None
+
         self.transformer = Transformer()
         X_prep = self.transformer.fit_transform(X)
 
-        modelData = generateModel(X_prep, y, self.isClassifier, verbose)
+        modelData = generateModel(
+            X_prep, y, self.isClassifier, metrics, verbose)
 
         self.modelName = modelData['name']
         self.model = modelData['estimator']
@@ -74,9 +79,9 @@ class Machine:
         return y_pred_dataframe
 
     def learnAndPredict(self, train_set_file, prediction_features_file,
-                        output_file="output.csv", headers_in_csvs=False,
+                        output_file="output.csv", headers_in_csvs=False, metrics=None,
                         verbose=True):
-        self.learn(train_set_file, headers_in_csvs, verbose)
+        self.learn(train_set_file, headers_in_csvs, metrics, verbose)
         self.predict(prediction_features_file, output_file, headers_in_csvs)
 
     def saveMachine(self, output_file_name="machine.pkl"):
