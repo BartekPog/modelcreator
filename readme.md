@@ -1,16 +1,20 @@
-# modelcreator - Automated Machine Learning Library
+# modelcreator - AutoML package
 
-This library contains a **Machine** which is meant to do the **learning** for you.
+This package contains a **Machine** which is meant to do the **learning** for you. It can automaticly create a fitting predictive model for given data.
 
 ## Instalation
 
-To use the library you have to just run:
+To use the package run:
 
 ```bash
 pip install modelcreator
 ```
 
 ## Usage
+
+The input may be either a path to **csv** file or a **pandas DataFrame** object.
+
+#### CSV path input
 
 The library assumes that the last column of the training dataset contains the expected results. The dataset (both training and predictive) must be provided as a csv file.
 
@@ -89,4 +93,4 @@ machine2 = Machine('machine.pkl')
 
 ### Development
 
-Have a feature idea or just want to help? Take a look at the issues tab or make a pull request!
+Have a feature idea or just want to help? Take a look at the [issues tab](https://github.com/BartekPog/modelcreator/issues)!
