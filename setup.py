@@ -5,7 +5,7 @@ with open("readme.md", "r") as fh:
 
 setuptools.setup(
     name="modelcreator",
-    version="0.9.1",
+    version="0.9.2",
     author="Bartłomiej Pogodziński",
     author_email="bartek.pogod@gmail.com",
     description="Machine Learning package for quick fast model generation and comparison",

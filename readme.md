@@ -2,6 +2,25 @@
 
 This package contains a **Machine** which is meant to do the **learning** for you. It can automaticly create a fitting predictive model for given data.
 
+###### Sample output
+
+```
+Testing:  Gradient Boosting Classifier
+[########################################] | 100% Completed | 33.6s
+Score: 0.9667
+
+Testing:  Random Forest Classifier
+[########################################] | 100% Completed | 10.8s
+Score: 0.9600
+
+Testing:  Ada Boost Classifier
+[########################################] | 100% Completed |  1.7s
+Score: 0.9600
+
+Chosen model:  Gradient Boosting Classifier 0.9667
+Results saved to  output.csv
+```
+
 ## Instalation
 
 To use the package run:
