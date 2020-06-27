@@ -1,6 +1,6 @@
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import make_scorer
-from automl_models import classificationModels, regressionModels
+from .models import classificationModels, regressionModels
 
 
 def generateModel(X, y, isClassification, metrics, verbose=True):

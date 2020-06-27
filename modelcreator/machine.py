@@ -1,8 +1,8 @@
 import pandas as pd
 import joblib
-from automl_models_generation import generateModel
-from automl_transformer import Transformer
-from automl_metrics import isValidMetrics
+from .models_generation import generateModel
+from .transformer import Transformer
+from .metrics import isValidMetrics
 
 
 class Machine:

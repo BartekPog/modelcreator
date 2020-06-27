@@ -1,13 +1,13 @@
-# Automated Machine Learning Library
+# modelcreator - Automated Machine Learning Library
 
 This library contains a **Machine** which is meant to do the **learning** for you.
 
 ## Instalation
 
-To use the library you have to clone this repository and run:
+To use the library you have to just run:
 
 ```bash
-pip install sklearn pandas joblib
+pip install modelcreator
 ```
 
 ## Usage
@@ -21,10 +21,10 @@ If the file contains headers you shall add `header_in_csv=True` parameter to the
 ###### Example 1 _Iris_
 
 ```python
-import automl
+from modelcreator import Machine
 
 # Create automl machine instance
-machine = automl.Machine()
+machine = Machine()
 
 # Train machine learning model
 machine.learn('example-data/iris.csv')
@@ -42,7 +42,7 @@ But what to do if a result column is not the last in the given csv? It may be in
 ###### Example 2 _Titanic_
 
 ```python
-import automl
+from modelcreator import Machine
 import pandas as pd
 
 # Create DataFrame object from file
@@ -55,7 +55,7 @@ X_train = train.drop(['Survived'], axis=1)
 y_train = train["Survived"].astype(str)
 
 # Create the instance of Machine
-machine = automl.Machine()
+machine = Machine()
 
 # Train machine learning model
 machine.learnFromDf(X_train, y_train)
@@ -84,7 +84,7 @@ If you want your model to avoid re-learning on the whole dataset just to make a 
 machine.saveMachine('machine.pkl')
 
 # Create new machine based on a schema file
-machine2 = automl.Machine('machine.pkl')
+machine2 = Machine('machine.pkl')
 ```
 
 ### Development
