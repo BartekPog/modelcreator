@@ -1,7 +1,7 @@
 from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, MinMaxScaler, OneHotEncoder
-from automl_transformation_utils import __DataFrameSelectorByIdx, __ClassReducer
+from .transformation_utils import __DataFrameSelectorByIdx, __ClassReducer
 
 
 def NumericalPipeline(numeric_indexes):
