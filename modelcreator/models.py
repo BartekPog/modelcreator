@@ -9,8 +9,8 @@ classificationModels = [
         'params': [
             {},
             {
-                'n_estimators': [70, 100, 150, 240], 'min_samples_split': [2, 3, 4],
-                'max_depth': [2, 3, 4], 'max_features': [None, 'auto']
+                'n_estimators': [70, 100, 150], 'min_samples_split': [2, 3, 4],
+                'max_depth': [2, 4], 'max_features': [None, 'auto']
             }
         ]
     },
@@ -20,7 +20,7 @@ classificationModels = [
         'params': [
             {},
             {
-                'n_estimators': [70, 100, 120, 160], 'max_depth': [None, 5, 15, 30],
+                'n_estimators': [70, 100, 160], 'max_depth': [None, 5, 15],
                 'max_features': [None, 'auto']
             },
         ]
@@ -44,8 +44,8 @@ regressionModels = [
         'params': [
             {},
             {
-                'n_estimators': [70, 100, 150, 240], 'min_samples_split': [2, 3, 4],
-                'max_depth': [2, 3, 4], 'max_features': [None, 'auto'], 'loss':['ls', 'huber']
+                'n_estimators': [70, 100, 150], 'min_samples_split': [2, 3, 4],
+                'max_depth': [2,  4], 'max_features': [None, 'auto'], 'loss':['ls', 'huber']
             }
         ]
     },
@@ -55,7 +55,7 @@ regressionModels = [
         'params': [
             {},
             {
-                'n_estimators': [10, 70, 100, 120, 160], 'max_depth': [None, 5, 15, 30],
+                'n_estimators': [10, 70, 100, 120], 'max_depth': [None, 5, 15],
                 'max_features': [None, 'auto'],
             },
         ]
