@@ -1,7 +1,7 @@
-import automl
+from modelcreator import Machine
 
 # Create automl machine instance
-machine = automl.Machine()
+machine = Machine()
 
 # Train machine learning model
 machine.learn('example-data/iris.csv')
