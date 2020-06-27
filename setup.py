@@ -11,7 +11,7 @@ setuptools.setup(
     description="Machine Learning package for quick fast model generation and comparison",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/BartekPog/AutoML-Library",
+    url="https://github.com/BartekPog/modelcreator",
     packages=setuptools.find_packages(exclude=["tests*"]),
     license='MIT',
     python_requires='>=3.6',
