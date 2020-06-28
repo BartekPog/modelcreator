@@ -15,5 +15,6 @@ setuptools.setup(
     packages=setuptools.find_packages(exclude=["tests*"]),
     license='MIT',
     python_requires='>=3.6',
-    install_requires=['joblib', 'sklearn', 'pandas', 'dask-ml', 'dask'],
+    install_requires=['joblib', 'sklearn',
+                      'pandas', 'dask-ml', 'dask', 'imblearn'],
 )

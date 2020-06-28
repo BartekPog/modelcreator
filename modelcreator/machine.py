@@ -3,6 +3,7 @@ import joblib
 from .models_generation import generateModel
 from .transformer import Transformer
 from .metrics import isValidMetrics
+from .models import computationLevels
 
 
 class Machine:
@@ -23,27 +24,35 @@ class Machine:
                 self.isClassifier = prev.isClassifier
                 self.isTrained = prev.isTrained
 
-    def learn(self, dataset_file, header_in_csv=False, metrics=None, verbose=True):
+    def learn(self, dataset_file, header_in_csv: bool = False, metrics=None, verbose: bool = True, cv: int = 3, computationLevel: str = 'medium'):
         dataset = pd.read_csv(dataset_file, header=(
             0 if header_in_csv else None))
 
         X = dataset.iloc[:, :-1]
         y = dataset.iloc[:, -1]
 
-        self.learnFromDf(X, y, metrics, verbose)
+        self.learnFromDf(X=X, y=y, metrics=metrics, verbose=verbose,
+                         cv=cv, computationLevel=computationLevel)
 
-    def learnFromDf(self, X, y, metrics=None, verbose=True):
+    def learnFromDf(self, X, y, metrics=None, verbose: bool = True, cv: int = 3, computationLevel: str = 'medium'):
         self.isClassifier = isinstance(y[0], str)
 
         if(not isValidMetrics(metrics, self.isClassifier)):
             print("This metrics invalid")
             return None
 
+        if(computationLevel not in computationLevels):
+            print("{} is not a valid computation level".format(computationLevel))
+            print("Valid computation levels:")
+            for level in computationLevels:
+                print("\t{}".format(level))
+            return None
+
         self.transformer = Transformer()
         X_prep = self.transformer.fit_transform(X)
 
         modelData = generateModel(
-            X_prep, y, self.isClassifier, metrics, verbose)
+            X=X_prep, y=y, isClassification=self.isClassifier, metrics=metrics, verbose=verbose, cv=cv, computationLevel=computationLevel)
 
         self.modelName = modelData['name']
         self.model = modelData['estimator']
