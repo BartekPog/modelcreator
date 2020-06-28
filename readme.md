@@ -6,18 +6,31 @@ This package contains a **Machine** which is meant to do the **learning** for yo
 
 ```
 Testing:  Gradient Boosting Classifier
-[########################################] | 100% Completed | 33.6s
+[########################################] | 100% Completed |  3.9s
 Score: 0.9667
 
-Testing:  Random Forest Classifier
-[########################################] | 100% Completed | 10.8s
+Testing:  Ada Boost Classifier
+[########################################] | 100% Completed |  1.3s
 Score: 0.9600
 
-Testing:  Ada Boost Classifier
-[########################################] | 100% Completed |  1.7s
+Testing:  Random Forest Classifier
+[########################################] | 100% Completed |  5.0s
 Score: 0.9600
+
+Testing:  Balanced Random Forest Classifier
+[########################################] | 100% Completed |  3.5s
+Score: 0.9600
+
+Testing:  SVC
+[########################################] | 100% Completed |  1.2s
+Score: 0.9667
 
 Chosen model:  Gradient Boosting Classifier 0.9667
+
+Params:
+        min_samples_split: 2
+        n_estimators: 100
+
 Results saved to  output.csv
 ```
 

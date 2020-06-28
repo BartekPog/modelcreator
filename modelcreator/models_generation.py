@@ -1,18 +1,20 @@
-from sklearn.metrics import make_scorer
-from .models import classificationModels, regressionModels
-
-# from sklearn.model_selection import GridSearchCV
 import dask_ml.model_selection as dcv
 from dask.diagnostics import ProgressBar
+from sklearn.metrics import make_scorer
+
+from .models import getModels
 
 
-def generateModel(X, y, isClassification, metrics, verbose=True, cv=3):
+def generateModel(X, y, isClassification: bool, metrics, verbose: bool = True, cv: int = 3, computationLevel: str = 'medium'):
+
     if (metrics == None):
         scoring = 'accuracy' if isClassification else 'neg_root_mean_squared_error'
     else:
         scoring = metrics if isinstance(metrics, str) else make_scorer(metrics)
 
-    models = classificationModels if isClassification else regressionModels
+    models = getModels(isClassification=isClassification,
+                       computationLevel=computationLevel)
+
     finalModel = models[0]
 
     for model in models:
@@ -38,6 +40,18 @@ def generateModel(X, y, isClassification, metrics, verbose=True, cv=3):
     if verbose:
         print("Chosen model: ", finalModel['name'],
               "{0:.4f}".format(finalModel['grid_search_result'].best_score_))
+
+        print("\nParams:")
+        params = finalModel['grid_search_result'].best_params_
+
+        if(len(params) > 0):
+            for key, value in params.items():
+                print("\t{}: {}".format(key, value))
+
+        else:
+            print("\tdefault")
+
+        print("")
 
     return {
         'estimator': finalModel['grid_search_result'].best_estimator_,
