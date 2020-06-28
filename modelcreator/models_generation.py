@@ -6,6 +6,7 @@ from .models import getModels
 
 
 def generateModel(X, y, isClassification: bool, metrics, verbose: bool = True, cv: int = 3, computationLevel: str = 'medium'):
+
     if (metrics == None):
         scoring = 'accuracy' if isClassification else 'neg_root_mean_squared_error'
     else:
