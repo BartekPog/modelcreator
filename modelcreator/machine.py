@@ -34,7 +34,7 @@ class Machine:
         self.learnFromDf(X=X, y=y, metrics=metrics, verbose=verbose,
                          cv=cv, computation_level=computation_level)
 
-    def learnFromDf(self, X: pd.DataFrame, y: pd.DataFrame, metrics=None, verbose: bool = True, cv: int = 3, computation_level: str = 'medium'):
+    def learnFromDf(self, X: pd.DataFrame, y: pd.Series, metrics=None, verbose: bool = True, cv: int = 3, computation_level: str = 'medium'):
         self.isClassifier = isinstance(y[0], str)
 
         if(not isValidMetrics(metrics, self.isClassifier)):
@@ -59,7 +59,7 @@ class Machine:
         self.modelParams = modelData['params']
         self.isTrained = True
 
-    def predict(self, features_file: str, output_file="output.csv", header_in_csv=False, verbose=True):
+    def predict(self, features_file: str, output_file="output.csv", header_in_csv: bool = False, verbose: bool = True):
         X_pred = pd.read_csv(features_file, header=(
             0 if header_in_csv else None))
 
@@ -69,7 +69,7 @@ class Machine:
         if(verbose):
             print("Results saved to ", output_file)
 
-    def predictFromDf(self, X_predictions: pd.DataFrame, output_file=None, verbose=True):
+    def predictFromDf(self, X_predictions: pd.DataFrame, output_file: str = None, verbose: bool = True):
         if not self.isTrained:
             print("Run learning function first")
             return pd.DataFrame({'err': True})
@@ -93,6 +93,16 @@ class Machine:
             print("done")
 
     def showParams(self):
-        print(self.modelName)
-        print(self.modelParams)
-        print(self.model.feature_importances_)
+        print("Model: ", self.modelName)
+
+        print("\nParams:")
+        params = self.modelParams
+
+        if(len(params) > 0):
+            for key, value in params.items():
+                print("\t{}: {}".format(key, value))
+
+        else:
+            print("\tdefault")
+
+        print("")
