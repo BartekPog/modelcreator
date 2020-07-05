@@ -36,7 +36,7 @@ Results saved to  output.csv
 
 # Table of Contents
 
-1. [Instalation](#instalation)
+1. [Installation](#installation)
 1. [Usage](#usage)
    - [CSV input](#csv-path-input)
    - [Pandas input](#pandas-input)
@@ -50,7 +50,7 @@ Results saved to  output.csv
    - [saveMachine](#savemachine)
 1. [Development](#development)
 
-## Instalation
+## Installation
 
 To use the package run:
 
@@ -60,13 +60,13 @@ pip install modelcreator
 
 ## Usage
 
-The input may be either a path to **csv** file or a **pandas DataFrame** object.
+The input may be either a path to a **csv** file or a **pandas DataFrame** object.
 
 #### CSV path input
 
 The library assumes that the last column of the training dataset contains the expected results. The dataset (both training and predictive) must be provided as a **csv** file.
 
-If the results column contains text the _Machine_ will do its best to learn to _classify_ the data correctly. In case of a number in it _regression_ will be performed.
+If the results column contains text the _Machine_ will do its best to learn to _classify_ the data correctly. In case of a number inside, _regression_ will be performed.
 
 If the file contains headers you shall add `header_in_csv=True` parameter to the method.
 
@@ -115,7 +115,7 @@ machine.learnFromDf(X_train, y_train, computation_level='advanced')
 # Show parameters of the model
 machine.showParams()
 
-# Load test set from fole
+# Load test set from file
 X_test = pd.read_csv("test.csv")
 
 # Predict the labels
@@ -125,17 +125,17 @@ results = machine.predictFromDf(X_test)
 results.to_csv("results.csv")
 ```
 
-Simple? That's right! Just note that we used `astype(str)` in order to treat data as **classes**, not **numbers**, because the [Titanic dataset](https://www.kaggle.com/c/titanic) used in the example above has values _0_ and _1_ in `"Survived"` column to indicate whether a person made it through the disaster.
+Simple? That's right! Just note that we used `astype(str)` in order to treat data as **classes**, not **numbers** because the [Titanic dataset](https://www.kaggle.com/c/titanic) used in the example above has values _0_ and _1_ in `"Survived"` column to indicate whether a person made it through the disaster.
 
 #### Saving the model
 
 If you want your model to avoid re-learning on the whole dataset just to make a simple prediction you can save the state of _Machine_ to a file.
 
 ```python
-# Save Machine with trained model to "machine.pkl"
+# Save Machine with a trained model to "machine.pkl"
 machine.saveMachine('machine.pkl')
 
-# Create new machine based on a schema file
+# Create a new machine based on a schema file
 machine2 = Machine('machine.pkl')
 ```
 
@@ -145,9 +145,9 @@ The **Machine** can be customized according to the use case. Check the parameter
 
 ###### Machine
 
-| Param  | Type            | Default | Description                                                                                                                                     |
-| ------ | --------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| schema | _None_ or _str_ | `None`  | Machine may be created based on a saved, pre-trained machine instance. You may specify path to the saved instance in this param to recreate it. |
+| Param  | Type            | Default | Description                                                                                                                                           |
+| ------ | --------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| schema | _None_ or _str_ | `None`  | A Machine may be created based on a saved, pre-trained machine instance. You may specify the path to the saved instance in this param to recreate it. |
 
 ###### learn
 
@@ -157,7 +157,7 @@ The **Machine** can be customized according to the use case. Check the parameter
 | header_in_csv     | _bool_                      | `False`                                         | Whether the csv file contains _headers_ in the first row.                                                                                                                                                                                 |
 | metrics           | _None_, _str_ or _Callable_ | `'accuracy'` or `'neg_root_mean_squared_error'` | Metrics used for scoring estimators. Many popular scoring functions (such as _f1_, _roc_auc_, _neg_mean_gamma_deviance_). See [here](https://scikit-learn.org/stable/modules/model_evaluation.html) how to make custom scoring functions. |
 | verbose           | _bool_                      | `True`                                          | Whether to print learning logs.                                                                                                                                                                                                           |
-| cv                | _int_                       | `3`                                             | Number of cross-validation subsets. Higher values may increase computation time.                                                                                                                                                          |
+| cv                | _int_                       | `3`                                             | a Number of cross-validation subsets. Higher values may increase computation time.                                                                                                                                                        |
 | computation_level | _str_                       | `'medium'`                                      | Can be either `'basic'`, `'medium'` or `'advanced'`. With higher computation level more models and parameters are being tested.                                                                                                           |
 
 ###### learnFromDf
@@ -168,25 +168,25 @@ The **Machine** can be customized according to the use case. Check the parameter
 | y                 | _pandas.Series_             |                                                 | Label columns of the training data.                                                                                                                                                                                                       |
 | metrics           | _None_, _str_ or _Callable_ | `'accuracy'` or `'neg_root_mean_squared_error'` | Metrics used for scoring estimators. Many popular scoring functions (such as _f1_, _roc_auc_, _neg_mean_gamma_deviance_). See [here](https://scikit-learn.org/stable/modules/model_evaluation.html) how to make custom scoring functions. |
 | verbose           | _bool_                      | `True`                                          | Whether to print learning logs.                                                                                                                                                                                                           |
-| cv                | _int_                       | `3`                                             | Number of cross-validation subsets. Higher values may increase computation time.                                                                                                                                                          |
+| cv                | _int_                       | `3`                                             | A number of cross-validation subsets. Higher values may increase computation time.                                                                                                                                                        |
 | computation_level | _str_                       | `'medium'`                                      | Can be either `'basic'`, `'medium'` or `'advanced'`. With higher computation level more models and parameters are being tested.                                                                                                           |
 
 ###### predict
 
-| Param         | Type   | Default        | Description                                                                  |
-| ------------- | ------ | -------------- | ---------------------------------------------------------------------------- |
-| features_file | _str_  |                | Path to the features **csv** of the data to generate predictions on.         |
-| header_in_csv | _bool_ | `False`        | Whether the csv file contains _headers_ in the first row.                    |
-| output_file   | _str_  | `'output.csv'` | Path to the output **csv** file. In this file the predictions will be saved. |
-| verbose       | _str_  | `True`         | Whether to print logs.                                                       |
+| Param         | Type   | Default        | Description                                                                   |
+| ------------- | ------ | -------------- | ----------------------------------------------------------------------------- |
+| features_file | _str_  |                | Path to the features **csv** of the data to generate predictions on.          |
+| header_in_csv | _bool_ | `False`        | Whether the csv file contains _headers_ in the first row.                     |
+| output_file   | _str_  | `'output.csv'` | Path to the output **csv** file. In this file, the predictions will be saved. |
+| verbose       | _str_  | `True`         | Whether to print logs.                                                        |
 
 ###### predictFromDf
 
-| Param         | Type               | Default | Description                                                                                                                                                                                                                         |
-| ------------- | ------------------ | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| X_predictions | _pandas.DataFrame_ |         | Features columns to generate predictions on.                                                                                                                                                                                        |
-| output_file   | _str_              | `None`  | Predict method returns _pandas.Series_ of the results. Additionally it can also save the results to a **csv** file. It can be specified here. If the path is other than `None` it will be interpreted as a path to the output file. |
-| verbose       | _str_              | `True`  | Whether to print logs.                                                                                                                                                                                                              |
+| Param         | Type               | Default | Description                                                                                                                                                                                                                          |
+| ------------- | ------------------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| X_predictions | _pandas.DataFrame_ |         | Features columns to generate predictions on.                                                                                                                                                                                         |
+| output_file   | _str_              | `None`  | Predict method returns _pandas.Series_ of the results. Additionally, it can also save the results to a **csv** file. It can be specified here. If the path is other than `None` it will be interpreted as a path to the output file. |
+| verbose       | _str_              | `True`  | Whether to print logs.                                                                                                                                                                                                               |
 
 ###### saveMachine
 
