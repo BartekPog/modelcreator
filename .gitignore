@@ -10,5 +10,3 @@ test_hypothyroid.py
 modelcreator.egg-info/
 build/
 dist/
-# dist/.env
-.old-env/
